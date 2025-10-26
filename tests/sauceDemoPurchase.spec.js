@@ -7,7 +7,7 @@ const { CheckoutPage } = require('../pages/checkoutPage')
 
 
 test.describe('SauceDemo E2E - Purchase flow', () => {
- test('Should login, add item, checkout and complete order', async ({page }) => {
+ test('Should login, add item, checkout and complete order', async ({ page }) => {
  
   const login = new LoginPage(page)
   const products = new ProductsPage(page)
