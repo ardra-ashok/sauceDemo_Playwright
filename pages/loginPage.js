@@ -11,9 +11,9 @@ class LoginPage {
   await this.page.goto('/')
  }
 
- async login(user='standard_user', password='secret_sauce') {
-  await this.username.fill(user)
-  await this.password.fill(password)
+ async login(loginDetails) {
+  await this.username.fill(loginDetails.username)
+  await this.password.fill(loginDetails.password)
   await this.loginBtn.click()
  }
 }

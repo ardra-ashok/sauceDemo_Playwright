@@ -5,6 +5,8 @@ const { ProductsPage } = require('../pages/productsPage')
 const { CartPage } = require('../pages/cartPage')
 const { CheckoutPage } = require('../pages/checkoutPage')
 
+const { userDetails, loginDetails, productDetails, confirmMessage } = require('../data/testData')
+
 
 test.describe('SauceDemo E2E - Purchase flow', () => {
  test('Should login, add item, checkout and complete order', async ({ page }) => {
@@ -14,13 +16,13 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   const cart = new CartPage(page)
   const checkout = new CheckoutPage(page)
 
-  const productName = 'Sauce Labs Fleece Jacket'
+  const productName = productDetails.productName
 
   // Go to login page and login with valid credentials 
   await login.goto()
   await expect(page).toHaveTitle(login.loginPageTitle)
   await expect(login.loginBtn).toBeVisible()
-  await login.login()
+  await login.login(loginDetails)
 
   // verify that the products are loaded
   await expect(page).toHaveURL(/inventory/)
@@ -41,12 +43,12 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
 
   // Enter shipping details and checkout
   await cart.checkout()
-  await checkout.enterShippingDetails()
+  await checkout.enterShippingDetails(userDetails)
 
   // Finish checkout and confirm purchase success message
   await checkout.verifyProductAndPrice(productName, productPrice)
   await checkout.finishOrder()
-  await checkout.verifyPurchaseSuccess()
+  await checkout.verifyPurchaseSuccess(confirmMessage)
  })
 })
 

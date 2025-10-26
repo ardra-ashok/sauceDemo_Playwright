@@ -14,14 +14,10 @@ class CheckoutPage {
     this.itemPrice = page.locator('.inventory_item_price')
   }
 
-  async enterShippingDetails(
-    firstName = 'Maria',
-    lastName = 'Luca',
-    postCode = '2000'
-  ) {
-    await this.firstName.fill(firstName)
-    await this.lastName.fill(lastName)
-    await this.postalCode.fill(postCode)
+  async enterShippingDetails(userDetails) {
+    await this.firstName.fill(userDetails.firstName)
+    await this.lastName.fill(userDetails.lastName)
+    await this.postalCode.fill(userDetails.postCode)
     await this.continueBtn.click()
   }
 
@@ -34,14 +30,10 @@ class CheckoutPage {
     await expect(this.itemPrice).toHaveText(price)
   }
 
-  async verifyPurchaseSuccess() {
+  async verifyPurchaseSuccess(confirmMessage) {
     await this.orderSuccessHeader.waitFor({ state: 'visible' })
-    await expect(this.orderSuccessHeader).toHaveText(
-      'Thank you for your order!'
-    )
-    await expect(this.orderSuccessText).toContainText(
-      'Your order has been dispatched,'
-    )
+    await expect(this.orderSuccessHeader).toHaveText(confirmMessage.successHeaderText)
+    await expect(this.orderSuccessText).toContainText(confirmMessage.successContentText)
   }
 }
 

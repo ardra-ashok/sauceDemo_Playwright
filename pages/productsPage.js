@@ -6,6 +6,7 @@ class ProductsPage {
   this.items = page.locator('.inventory_item')
   this.cartItemsCount = page.locator('[data-test="shopping-cart-badge"]')
   this.cartLink = page.locator('.shopping_cart_link')
+  this.productPrice = '.inventory_item_price'
  }
 
  async addProductToCart(productName) {
@@ -15,7 +16,7 @@ class ProductsPage {
   
   async getPrice(productName) {
    const item = this.items.filter({ hasText: productName }).first()
-   const price = await item.locator('.inventory_item_price')
+   const price = await item.locator(this.productPrice)
    await price.waitFor()
    return await price.innerText()
  }
