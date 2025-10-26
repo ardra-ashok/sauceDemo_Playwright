@@ -8,6 +8,7 @@ module.exports = defineConfig({
   },
   reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
   use: {
+    baseURL:'https://www.saucedemo.com',
     ignoreHTTPSErrors: true,
     video: 'retain-on-failure',
   },
