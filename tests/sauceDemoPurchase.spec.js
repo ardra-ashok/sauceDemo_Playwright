@@ -10,20 +10,20 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   const login = new LoginPage(page)
   const products = new ProductsPage(page)
 
+  const productName = 'Sauce Labs Fleece Jacket'
+
   await login.goto()
   await expect(login.loginBtn).toBeVisible()
   await login.login()
-
 
   await expect(page).toHaveURL(/inventory/)
   const itemsCount = await products.items.count()
   expect(itemsCount).toBeGreaterThan(0)
 
-
-
-
-
-  
+  await products.addProductToCart(productName)
+  await expect(products.cartItemsCount).toHaveText('1')
+ 
+  await products.openCart()
 
 
  })
