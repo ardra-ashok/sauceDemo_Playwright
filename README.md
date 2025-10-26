@@ -17,14 +17,14 @@
 
  **How to install and run the project**
   1. Clone Project 
-    * git clone git@github.com:ardra-ashok/sauceDemo_Playwright.git
-    * cd sauceDemo_Playwright
+    - git clone git@github.com:ardra-ashok/sauceDemo_Playwright.git
+    - cd sauceDemo_Playwright
      
   2. Steps for running the project 
-    * npm install
-    * npx playwright install
-    * npm test
-    * or headed - npm run test:headed
+    - npm install
+    - npx playwright install
+    - npm test
+    - or headed - npm run test:headed
 
 
      
