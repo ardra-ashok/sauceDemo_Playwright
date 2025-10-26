@@ -1,11 +1,10 @@
 class LoginPage {
  constructor(page) {
-  this.page = page;
-  this.username = page.getByPlaceholder('Username');
+  this.page = page
+  this.username = page.getByPlaceholder('Username')
   this.password = page.locator('#password')
     this.loginBtn = page.locator('[data-test="login-button"]')
  }
-
 
  async goto() {
   await this.page.goto('https://www.saucedemo.com/')
