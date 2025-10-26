@@ -16,7 +16,6 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
 
   const productName = 'Sauce Labs Fleece Jacket'
 
-
   // Go to login page and login with valid credentials 
   await login.goto()
   await expect(login.loginBtn).toBeVisible()
