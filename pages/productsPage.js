@@ -1,6 +1,5 @@
 class ProductsPage {
 
-
  constructor(page) {
   this.page = page
   this.items = page.locator('.inventory_item')
@@ -20,7 +19,6 @@ class ProductsPage {
    await price.waitFor()
    return await price.innerText()
  }
- 
 
  async openCart() {
   await this.cartLink.click()
