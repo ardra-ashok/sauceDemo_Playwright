@@ -20,11 +20,11 @@
     git clone git@github.com:ardra-ashok/sauceDemo_Playwright.git
     cd sauceDemo_Playwright
      
-  2. Steps 
+  2. Steps for running the project 
     npm install
     npx playwright install
     npm test
-    or npm run test:headed
+    or headed - npm run test:headed
 
 
      
