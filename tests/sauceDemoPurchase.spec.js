@@ -3,6 +3,7 @@ const { test, expect } = require('@playwright/test')
 const { LoginPage } = require('../pages/loginPage')
 const { ProductsPage } = require('../pages/productsPage')
 const { CartPage } = require('../pages/cartPage')
+const { CheckoutPage } = require('../pages/checkoutPage')
 
 
 test.describe('SauceDemo E2E - Purchase flow', () => {
@@ -11,6 +12,7 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   const login = new LoginPage(page)
   const products = new ProductsPage(page)
   const cart = new CartPage(page)
+  const checkout = new CheckoutPage(page)
 
   const productName = 'Sauce Labs Fleece Jacket'
 
@@ -29,10 +31,10 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   await cart.verifyItemInCart(productName)
 
   await cart.checkout()
+  await checkout.enterShippingDetails()
 
-
-
-
+  await checkout.finishOrder()
+  await checkout.verifyPurchaseSuccess()
  })
 })
 
