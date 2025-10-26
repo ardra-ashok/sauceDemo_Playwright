@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test')
 
 const { LoginPage } = require('../pages/loginPage')
 const { ProductsPage } = require('../pages/productsPage')
+const { CartPage } = require('../pages/cartPage')
 
 
 test.describe('SauceDemo E2E - Purchase flow', () => {
@@ -9,6 +10,7 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
  
   const login = new LoginPage(page)
   const products = new ProductsPage(page)
+  const cart = new CartPage(page)
 
   const productName = 'Sauce Labs Fleece Jacket'
 
@@ -24,6 +26,11 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   await expect(products.cartItemsCount).toHaveText('1')
  
   await products.openCart()
+  await cart.verifyItemInCart(productName)
+
+  await cart.checkout()
+
+
 
 
  })
