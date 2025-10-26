@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test'
+const { expect } = require('@playwright/test')
 
 class CheckoutPage {
   constructor(page) {
@@ -10,6 +10,8 @@ class CheckoutPage {
     this.finishBtn = page.locator('#finish')
     this.orderSuccessHeader = page.locator('.complete-header')
     this.orderSuccessText = page.locator('[data-test="complete-text"]')
+    this.itemName = page.locator('.inventory_item_name')
+    this.itemPrice = page.locator('.inventory_item_price')
   }
 
   async enterShippingDetails(
@@ -27,12 +29,19 @@ class CheckoutPage {
     await this.finishBtn.click()
   }
 
+  async verifyProductAndPrice(productName, price) {
+    await expect(this.itemName).toHaveText(productName)
+    await expect(this.itemPrice).toHaveText(price)
+  }
+
   async verifyPurchaseSuccess() {
     await this.orderSuccessHeader.waitFor({ state: 'visible' })
-    await expect(this.orderSuccessHeader).toHaveText('Thank you for your order!')
-   await expect(this.orderSuccessText).toContainText(
-     'Your order has been dispatched,'
-   )
+    await expect(this.orderSuccessHeader).toHaveText(
+      'Thank you for your order!'
+    )
+    await expect(this.orderSuccessText).toContainText(
+      'Your order has been dispatched,'
+    )
   }
 }
 

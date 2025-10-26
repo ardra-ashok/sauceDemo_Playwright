@@ -3,7 +3,8 @@ class LoginPage {
   this.page = page
   this.username = page.getByPlaceholder('Username')
   this.password = page.locator('#password')
-    this.loginBtn = page.locator('[data-test="login-button"]')
+  this.loginBtn = page.locator('[data-test="login-button"]')
+  this.loginPageTitle = 'Swag Labs' 
  }
 
  async goto() {

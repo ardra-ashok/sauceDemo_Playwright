@@ -20,7 +20,7 @@
   * `git clone git@github.com:ardra-ashok/sauceDemo_Playwright.git`
   * `cd sauceDemo_Playwright`
      
-  2. Steps for running the project 
+  2. Steps for install and running the project 
    * `npm install`
    * `npx playwright install`
    * **Headless:** `npm test`

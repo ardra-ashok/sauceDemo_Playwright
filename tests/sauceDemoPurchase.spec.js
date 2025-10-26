@@ -18,6 +18,7 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
 
   // Go to login page and login with valid credentials 
   await login.goto()
+  await expect(page).toHaveTitle(login.loginPageTitle)
   await expect(login.loginBtn).toBeVisible()
   await login.login()
 
@@ -26,19 +27,24 @@ test.describe('SauceDemo E2E - Purchase flow', () => {
   const itemsCount = await products.items.count()
   expect(itemsCount).toBeGreaterThan(0)
 
- // Add product to Cart
+
+  // Add product to Cart
   await products.addProductToCart(productName)
+  const productPrice = await products.getPrice(productName)
   await expect(products.cartItemsCount).toHaveText('1')
+  
  
   // Open cart and verify product is present
   await products.openCart()
+  await expect(page).toHaveURL(/cart/)
   await cart.verifyItemInCart(productName)
 
   // Enter shipping details and checkout
   await cart.checkout()
   await checkout.enterShippingDetails()
 
- // Finish checkout and confirm purchase success message
+  // Finish checkout and confirm purchase success message
+  await checkout.verifyProductAndPrice(productName, productPrice)
   await checkout.finishOrder()
   await checkout.verifyPurchaseSuccess()
  })
